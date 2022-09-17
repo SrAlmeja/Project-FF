@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
 {
+    // Movement Variables
     public float speed;
+    // Clamp Variables
+    private float maxClampX;
+    private float minClampX;
+    private float maxClampZ;
+    private float minClampZ;
     
-    // Start is called before the first frame update
+    
     void Start()
     {
         
@@ -23,5 +29,10 @@ public class NewPlayerMovement : MonoBehaviour
         {
             transform.position += Vector3.left * speed;   
         }
+    }
+
+    void Movement()
+    {
+        
     }
 }
