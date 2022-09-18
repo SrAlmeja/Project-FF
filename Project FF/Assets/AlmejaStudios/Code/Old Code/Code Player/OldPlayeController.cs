@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class OldPlayeController : MonoBehaviour
 {
     public GameObject Cars, lose;
     public AudioSource loseSound, music, motorSound, trophySound;

@@ -15,6 +15,10 @@ public class SkinLoader : MonoBehaviour
             Destroy(defaultSkin);
             Instantiate(skinToLoad, transform);   
         }
+        else
+        {
+            Instantiate(defaultSkin, transform);
+        }
         
     }
 }

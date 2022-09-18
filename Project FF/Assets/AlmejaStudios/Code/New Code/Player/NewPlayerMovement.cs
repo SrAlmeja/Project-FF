@@ -1,18 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+
+[RequireComponent(typeof(InutController))]
 public class NewPlayerMovement : MonoBehaviour
 {
+    //Input call
+    private InutController _inutController = null;
+    
     // Movement Variables
-    public float speed;
+    [SerializeField]private PlayerInput playerInput;
+    private Vector3 inputVector;
+    [SerializeField] public float speed = 0f;
     // Clamp Variables
     private float maxClampX;
     private float minClampX;
     private float maxClampZ;
     private float minClampZ;
-    
-    
+
+    private void Awake()
+    {
+        _inutController = GetComponent<InutController>();
+    }
+
     void Start()
     {
         
@@ -21,18 +35,15 @@ public class NewPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            transform.position += Vector3.right * speed;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            transform.position += Vector3.left * speed;   
-        }
+        Move();
     }
 
-    void Movement()
+    void Move()
     {
+        Vector2 input = _inutController.MoveInput();
         
+        transform.position += transform.right * input.x * speed * Time.deltaTime;
+        transform.position += transform.forward * input.y * speed * Time.deltaTime;
+
     }
 }
