@@ -4,33 +4,35 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject myObjects;
+    [SerializeField] GameObject myObjects;
     public float spawntime;
     //public float dificult;
     public float elapsedTime;
     public float zDistance1, zDistance2;
-    [SerializeField] floatVariable Dificult;
+    [SerializeField] floatVariable dificult;
+    [SerializeField] private float easy, medium, hard;
 
-    void Start()
+    void Awake()
     {
-        Dificult.Value = 5;
+        dificult.Value = 0;
     }
 
     void Update()
     {
+        
         Spawn();
         elapsedTime += Time.deltaTime;
-        Dificult.Value -= 0.0002f;
+        dificult.Value = (elapsedTime/10);
         
     }
     
     public void Spawn()
     {
-        if (Dificult.Value <= -0.009f)
+        if (dificult.Value >= easy)
         {
-            Dificult.Value = -0.009f;
+            dificult.Value = -0.009f;
         }
-        if (elapsedTime >= Dificult.Value)
+        if (elapsedTime >= dificult.Value)
         {
             GameObject newMyObjects = Instantiate(myObjects);
             newMyObjects.transform.position = transform.position + new Vector3(Random.Range(-1, 2), 0, Random.Range(zDistance1, zDistance2));

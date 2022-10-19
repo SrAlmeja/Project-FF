@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyCars : MonoBehaviour
 {
-    public float tmax = 1;
-    public float tinicial = 0;
-    public GameObject carEnemy;
+    [SerializeField] float tmax = 1;
+    [SerializeField] float tinicial = 0;
+    [SerializeField] GameObject carEnemy;
     public float speed;
 
-    void Start()
+    void OnObjectSpawn()
     {
         GameObject newCarEnemy = Instantiate(carEnemy);
         newCarEnemy.transform.position = transform.position = new Vector3(Random.Range(-1,1),0,0);
